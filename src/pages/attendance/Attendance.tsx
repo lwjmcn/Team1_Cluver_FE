@@ -389,7 +389,7 @@ function Attendance() {
                       <S.MemberDiv>
                         <S.MemberText
                           style={{
-                            marginLeft: "7px",
+                            marginLeft: "3%",
                             width: "50px",
                           }}
                         >
