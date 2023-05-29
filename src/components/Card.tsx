@@ -206,12 +206,12 @@ function Card({ id, name, desc, img, isPrivate, code }: IProps) {
           <TitleWrapper>
             <Icon>
               <Logo ref={imgRef} src={img} onError={handleImgError} />
-              <span
+              <div
                 ref={iconRef}
-                style={{ lineHeight: "160%", display: "none" }}
+                style={{ lineHeight: "160%", display: "inline-block" }}
               >
                 ♣
-              </span>
+              </div>
             </Icon>
             <DescWrapper>
               <Title>{name}</Title>
