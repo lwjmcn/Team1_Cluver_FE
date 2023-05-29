@@ -106,7 +106,7 @@ const CardContainer = styled.div`
   }
 `;
 
-function CheckAttendance() {
+function MoveTo() {
   const navigate = useNavigate();
   const data = useRecoilValue(manager);
   const [clubs, setClubs] = useState<IClub[]>([]);
@@ -137,7 +137,7 @@ function CheckAttendance() {
                 <Title> 님이 관리 중인 동아리가 없습니다.</Title>
               </>
             ) : (
-              <Title>출석 확인할 동아리를 선택하세요.</Title>
+              <Title>이동할 동아리를 선택하세요.</Title>
             )}
           </div>
 
@@ -146,7 +146,7 @@ function CheckAttendance() {
               if (club)
                 return (
                   <Link
-                    to={`/attendance/${club.id}`}
+                    to={`/anonymous/${club.id}`}
                     style={{
                       width: "75%",
                       height: "100%",
@@ -173,4 +173,4 @@ function CheckAttendance() {
   );
 }
 
-export default CheckAttendance;
+export default MoveTo;
