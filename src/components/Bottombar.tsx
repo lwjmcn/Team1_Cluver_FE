@@ -40,6 +40,10 @@ const Icon = styled.span<{ isActive: boolean }>`
   text-align: center;
   font-family: ${(props) => props.theme.titleFont};
   cursor: pointer;
+  background: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 `;
 
 const TextDiv = styled.div`

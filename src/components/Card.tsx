@@ -37,6 +37,10 @@ const Icon = styled.div`
   border-radius: 50%;
   color: white;
   text-align: center;
+  background: white;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 `;
 const Logo = styled.img`
   width: 30px;
@@ -206,12 +210,12 @@ function Card({ id, name, desc, img, isPrivate, code }: IProps) {
           <TitleWrapper>
             <Icon>
               <Logo ref={imgRef} src={img} onError={handleImgError} />
-              <div
+              <span
                 ref={iconRef}
-                style={{ lineHeight: "160%", display: "inline-block" }}
+                style={{ lineHeight: "160%", display: "none" }}
               >
                 ♣
-              </div>
+              </span>
             </Icon>
             <DescWrapper>
               <Title>{name}</Title>
