@@ -239,7 +239,7 @@ function CheckCode() {
                 cursor: "pointer",
               }}
               onClick={() => {
-                window.location.href = `/attendance/${state.id}`;
+                navigate(`/attendance/${state.id}`);
               }}
               onMouseEnter={() => {
                 btn.current.style.color = "#1C1F2A";

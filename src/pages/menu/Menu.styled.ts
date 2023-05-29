@@ -38,7 +38,7 @@ export const Btn = styled.div`
   border-radius: 7px;
   font-size: 15px;
   border: 1px solid white;
-  padding: 11px 12px;
+  padding: 11px 0px;
   cursor: pointer;
   font-family: ${(props) => props.theme.textFont};
   :hover {
