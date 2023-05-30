@@ -101,7 +101,7 @@ const BtnDiv = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: calc(var(--vh, 1vh) * 25);
+  margin-top: calc(var(--vh, 1vh) * 27);
   /* border: 1px solid white;
   padding: 7px 0;
   border-radius: 10px; */
