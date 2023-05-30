@@ -30,7 +30,7 @@ const Cluver = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  z-index: 10;
+  z-index: 22;
   cursor: pointer;
 `;
 
@@ -46,7 +46,7 @@ const Leftdiv = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  z-index: 10;
+  z-index: 22;
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -66,7 +66,7 @@ const MenuDiv = styled.div`
   -webkit-background-clip: text;
   color: transparent;
   cursor: pointer;
-  z-index: 10;
+  z-index: 22;
 `;
 
 const DropDiv = styled.div`
@@ -192,17 +192,14 @@ function Navbar() {
       menu.current.style.opacity = "0";
       menu.current.style.zIndex = "-1";
       setText("menu");
-      clover.current.style.fontSize = "35px";
       setTimeout(() => {
         clover.current.style.opacity = "1";
       }, 15);
     } else {
       clover.current.style.opacity = "0";
       menu.current.style.opacity = "1";
-      menu.current.style.zIndex = "5";
+      menu.current.style.zIndex = "20";
       setText("close");
-      //clover.current.style.fontSize = "26px";
-      clover.current.style.fontSize = "35px";
       setTimeout(() => {
         clover.current.style.opacity = "1";
       }, 15);
