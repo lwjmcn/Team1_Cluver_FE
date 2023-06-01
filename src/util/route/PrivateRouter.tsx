@@ -11,7 +11,8 @@ interface IPrivateRouteProps {
 export default function PrivateRoute({
   authentication,
 }: IPrivateRouteProps): ReactElement | null {
-  const isLogined = !!localStorage.getItem("token"); //로그인 토큰 존재 여부
+  // const isLogined = !!localStorage.getItem("token"); //로그인 토큰 존재 여부
+  const isLogined = document.cookie.split("; token=").length === 2;
 
   if (authentication) {
     // 로그인 시 페이지

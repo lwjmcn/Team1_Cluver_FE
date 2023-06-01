@@ -7,6 +7,7 @@ import { getClubs, tokenValidate } from "../../util/api";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
 import { useEffect, useState } from "react";
+import { getCookie } from "../../util/cookie";
 
 const Background = styled.div`
   width: 100%;
@@ -115,7 +116,8 @@ function MoveTo() {
   const [clubs, setClubs] = useState<IClub[]>([]);
 
   const getClubsData = async () => {
-    const response = await getClubs(localStorage.getItem("token"));
+    // const response = await getClubs(localStorage.getItem("token"));
+    const response = await getClubs(getCookie("token"));
     if (response) {
       console.log(response);
       setClubs(response);

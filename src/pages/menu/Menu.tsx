@@ -8,6 +8,7 @@ import { useRecoilValue } from "recoil";
 import { clubID } from "../../util/atoms";
 import { useNavigate } from "react-router-dom";
 import { tokenValidate } from "../../util/api";
+import { getCookie } from "../../util/cookie";
 
 function Menu() {
   const id = useRecoilValue(clubID);
@@ -15,7 +16,8 @@ function Menu() {
   const navigate = useNavigate();
 
   const Linkto = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     //console.log(response);
     if (response) {
       navigate("/checkattendance");
@@ -30,7 +32,8 @@ function Menu() {
   };
 
   const Linkto2 = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     //console.log(response);
     if (response) {
       navigate("/moveto");

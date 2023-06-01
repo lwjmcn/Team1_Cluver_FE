@@ -4,6 +4,7 @@ import Bottombar from "../../components/Bottombar";
 import { useEffect, useRef, useState } from "react";
 import { createClub } from "../../util/api";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../../util/cookie";
 
 const Background = styled.div`
   width: 100%;
@@ -139,7 +140,8 @@ function AddClub() {
         isPrivate,
         code,
         imgsrc,
-        localStorage.getItem("token")
+        // localStorage.getItem("token")
+        getCookie("token")
       );
       if (response.status === 201) {
         navigate("/admin");

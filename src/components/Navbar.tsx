@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { tokenValidate } from "../util/api";
 import { useRecoilValue } from "recoil";
 import { clubID } from "../util/atoms";
+import { deleteCookie, getCookie } from "../util/cookie";
 
 const Container = styled.div`
   width: 100%;
@@ -156,7 +157,8 @@ function Navbar() {
 
   const Linkto = async () => {
     setN(n + 1);
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     //console.log(response);
     if (response) {
       navigate("/checkattendance");
@@ -172,7 +174,8 @@ function Navbar() {
 
   const Linkto2 = async () => {
     setN(n + 1);
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     //console.log(response);
     if (response) {
       navigate("/moveto");
@@ -251,7 +254,8 @@ function Navbar() {
             <span style={{ cursor: "pointer" }}>대나무숲</span>
           </DropMenu> */}
 
-          {!!localStorage.getItem("token") ? (
+          {/* {!!localStorage.getItem("token") ? ( */}
+          {!!getCookie("token") ? (
             <>
               <BtnDiv>
                 <Btn onClick={Linkto}>
@@ -304,7 +308,8 @@ function Navbar() {
                 <Btn
                   onClick={() => {
                     setN(n + 1);
-                    localStorage.removeItem("token");
+                    // localStorage.removeItem("token");
+                    deleteCookie("token");
                     localStorage.removeItem("manager");
                     navigate("/login");
                   }}

@@ -7,6 +7,7 @@ import { getClubs, tokenValidate } from "../../util/api";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
 import { useEffect, useState } from "react";
+import { getCookie } from "../../util/cookie";
 
 const Background = styled.div`
   width: 100%;
@@ -116,7 +117,8 @@ function Login() {
   const [clubs, setClubs] = useState<IClub[]>([]);
 
   const onAddClub = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     if (response) {
       navigate("/addclub");
     } else {
@@ -125,7 +127,8 @@ function Login() {
     }
   };
   const onDeleteClub = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     if (response) {
       navigate("/delete");
     } else {
@@ -134,7 +137,8 @@ function Login() {
     }
   };
   const getClubsData = async () => {
-    const response = await getClubs(localStorage.getItem("token"));
+    // const response = await getClubs(localStorage.getItem("token"));
+    const response = await getClubs(getCookie("token"));
     if (response) {
       console.log(response);
       setClubs(response);

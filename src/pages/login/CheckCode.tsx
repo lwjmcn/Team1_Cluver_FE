@@ -152,7 +152,7 @@ function CheckCode() {
     );
     if (response.status === 201) {
       const code = response.data.checkCode;
-      navigate("/admin");
+      window.location.reload();
     } else {
       //console.log(response);
     }

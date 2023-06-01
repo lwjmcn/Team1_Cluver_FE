@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
 import { deleteClub, getClubs } from "../../util/api";
+import { getCookie } from "../../util/cookie";
 
 const Background = styled.div`
   width: 100%;
@@ -174,7 +175,8 @@ function Delete() {
     console.log("chosen", chosen);
     for (let id = 0; id < chosen.length; id++) {
       if (chosen[id] === true) {
-        const response = await deleteClub(id, localStorage.getItem("token"));
+        // const response = await deleteClub(id, localStorage.getItem("token"));
+        const response = await deleteClub(id, getCookie("token"));
         if (response.status === 200) {
           navigate("/admin");
         } else {
@@ -185,7 +187,8 @@ function Delete() {
   };
 
   const getClubsData = async () => {
-    const response = await getClubs(localStorage.getItem("token"));
+    // const response = await getClubs(localStorage.getItem("token"));
+    const response = await getClubs(getCookie("token"));
     if (response) {
       console.log(response);
       setClubs(response);

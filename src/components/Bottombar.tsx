@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { tokenValidate } from "../util/api";
+import { getCookie } from "../util/cookie";
 
 const Container = styled.div`
   width: 100%;
@@ -75,7 +76,8 @@ function Bottombar({ first, second, third }: IBarProps) {
   const navigate = useNavigate();
 
   const LinktoAdmin = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     //console.log(response);
     if (response) {
       navigate("/admin");

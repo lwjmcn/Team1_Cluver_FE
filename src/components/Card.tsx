@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { createCheckCode, getCheckCode, tokenValidate } from "../util/api";
 import { useEffect, useRef } from "react";
+import { getCookie } from "../util/cookie";
 const Container = styled.div`
   width: 75%;
   margin-bottom: 15px;
@@ -118,7 +119,8 @@ function Card({ id, name, desc, img, isPrivate, code }: IProps) {
   const today = new Date();
 
   const onCreateCode = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     if (response) {
       const response2 = await getCheckCode(
         today.getMonth() + 1,
@@ -181,7 +183,8 @@ function Card({ id, name, desc, img, isPrivate, code }: IProps) {
     }
   };
   const onEdit = async () => {
-    const response = await tokenValidate(localStorage.getItem("token"));
+    // const response = await tokenValidate(localStorage.getItem("token"));
+    const response = await tokenValidate(getCookie("token"));
     if (response) {
       navigate("/editclub", {
         //동아리설정변경하기페이지

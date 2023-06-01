@@ -1,4 +1,5 @@
 import axios from "axios";
+import { deleteCookie, setCookie } from "./cookie";
 
 export const BASE_URL = `http://cluver.kr:8000`;
 
@@ -10,14 +11,15 @@ export async function loginValidate(id: string, password: string) {
     });
     console.log(response);
     const token = response.data.accessToken;
-    localStorage.setItem("token", token);
+    // localStorage.setItem("token", token);
+    setCookie("token", token);
     return response;
   } catch (e: any) {
     console.log(e);
     return e.response.data.message;
   }
 }
-export async function getClubs(token: string | null) {
+export async function getClubs(token: string | undefined) {
   try {
     const response = await axios.get(`${BASE_URL}/club/my`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -29,13 +31,14 @@ export async function getClubs(token: string | null) {
   }
 }
 
-export async function tokenValidate(token: string | null) {
+export async function tokenValidate(token: string | undefined) {
   try {
     const response = await axios.get(`${BASE_URL}/auth/check`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (response.status === 401) {
-      localStorage.removeItem("token");
+      // localStorage.removeItem("token");
+      deleteCookie("token");
       localStorage.removeItem("manager");
       window.location.reload();
     }
@@ -100,7 +103,7 @@ export async function createClub(
   isPrivate: boolean,
   code: string,
   img: string,
-  token: string | null
+  token: string | undefined
 ) {
   try {
     const response = await axios.post(
@@ -130,7 +133,7 @@ export async function editClub(
   isPrivate: boolean,
   code: string,
   img: string,
-  token: string | null
+  token: string | undefined
 ) {
   try {
     const response = await axios.patch(
@@ -153,7 +156,7 @@ export async function editClub(
   }
 }
 
-export async function deleteClub(id: number, token: string | null) {
+export async function deleteClub(id: number, token: string | undefined) {
   try {
     const response = await axios.delete(`${BASE_URL}/club/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
