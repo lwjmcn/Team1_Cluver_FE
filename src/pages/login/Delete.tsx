@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
 import { deleteClub, getClubs } from "../../util/api";
+import Loading from "../../components/Loading";
 
 const Background = styled.div`
   width: 100%;
@@ -152,6 +153,7 @@ const CardListContainer = styled.div`
 `;
 
 function Delete() {
+  const [loading, setLoading] = useState(true);
   const data = useRecoilValue(manager);
 
   const navigate = useNavigate();
@@ -187,10 +189,12 @@ function Delete() {
   };
 
   const getClubsData = async () => {
+    setLoading(true);
     const response = await getClubs(localStorage.getItem("token"));
     if (response) {
       console.log(response);
       setClubs(response);
+      setLoading(false);
     } else {
       navigate("/login");
       console.log(response);
@@ -236,21 +240,26 @@ function Delete() {
             <UserName>{data.name}</UserName>
             <Title> 님이 관리 중인 동아리입니다.</Title>
           </div>
-          <CardListContainer>
-            {clubs.map((club: any) => (
-              <CardContainer onClick={() => onChoose(club.id)}>
-                <CheckBox isActive={chosen[club.id]} />
-                <SimpleCard
-                  id={club.id}
-                  key={club.id}
-                  name={club.name.toUpperCase()}
-                  desc={club.description}
-                  isPrivate={club.status == "PRIVATE" ? true : false}
-                  chosen={chosen[club.id]}
-                />
-              </CardContainer>
-            ))}
-          </CardListContainer>
+          {loading ? (
+            <Loading />
+          ) : (
+            <CardListContainer>
+              {clubs.map((club: any) => (
+                <CardContainer onClick={() => onChoose(club.id)}>
+                  <CheckBox isActive={chosen[club.id]} />
+                  <SimpleCard
+                    id={club.id}
+                    key={club.id}
+                    name={club.name.toUpperCase()}
+                    desc={club.description}
+                    isPrivate={club.status == "PRIVATE" ? true : false}
+                    chosen={chosen[club.id]}
+                  />
+                </CardContainer>
+              ))}
+            </CardListContainer>
+          )}
+
           <Button ref={btnRef} onClick={onWillDelete}>
             선택 삭제
           </Button>
