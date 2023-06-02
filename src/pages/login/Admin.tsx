@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import Bottombar from "../../components/Bottombar";
 import Card from "../../components/Card";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getClubs, tokenValidate } from "../../util/api";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
@@ -111,7 +111,7 @@ const CardContainer = styled.div`
   }
 `;
 
-function Login() {
+function Admin() {
   const navigate = useNavigate();
   const data = useRecoilValue(manager);
   const [clubs, setClubs] = useState<IClub[]>([]);
@@ -202,4 +202,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Admin;
