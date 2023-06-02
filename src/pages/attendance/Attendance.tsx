@@ -57,6 +57,7 @@ function Attendance() {
   const [on, setOn] = useState(false);
   const [clubName, setClubName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
 
   const [ID, setID] = useRecoilState(clubID);
 
@@ -104,9 +105,11 @@ function Attendance() {
   };
 
   const getUsers = async (m: string, d: string) => {
+    setLoading2(true);
     const response = await getCalendar(m, d, Number(params.clubID));
     //console.log(response);
     setArr2(response);
+    setLoading2(false);
   };
 
   useEffect(() => {
@@ -664,46 +667,58 @@ function Attendance() {
                 X
               </S.ListClose>
               <S.attendances>
-                <ul>
-                  {b &&
-                    b?.map((e: any) => {
-                      let text = "결석";
-                      if (e.isChecked) {
-                        text = "출석";
-                      }
-                      return (
-                        <li key={e.index}>
-                          <S.ListMembers>
-                            <S.ListMembersText
-                              style={{
-                                marginLeft: "15px",
-                                marginRight: "15px",
-                                width: "50px",
-                              }}
-                            >
-                              {e.name}
-                            </S.ListMembersText>
-                            <S.ListMembersText style={{ marginRight: "30px" }}>
-                              {e.code}
-                            </S.ListMembersText>
-                            {text === "출석" ? (
+                {loading2 ? (
+                  <Loading />
+                ) : (
+                  <ul>
+                    {b &&
+                      b?.map((e: any) => {
+                        let text = "결석";
+                        if (e.isChecked) {
+                          text = "출석";
+                        }
+                        return (
+                          <li key={e.index}>
+                            <S.ListMembers>
                               <S.ListMembersText
-                                style={{ marginRight: "0px", color: "#89EC84" }}
+                                style={{
+                                  marginLeft: "15px",
+                                  marginRight: "15px",
+                                  width: "50px",
+                                }}
                               >
-                                {text}
+                                {e.name}
                               </S.ListMembersText>
-                            ) : (
                               <S.ListMembersText
-                                style={{ marginRight: "0px", color: "#e34848" }}
+                                style={{ marginRight: "30px" }}
                               >
-                                {text}
+                                {e.code}
                               </S.ListMembersText>
-                            )}
-                          </S.ListMembers>
-                        </li>
-                      );
-                    })}
-                </ul>
+                              {text === "출석" ? (
+                                <S.ListMembersText
+                                  style={{
+                                    marginRight: "0px",
+                                    color: "#89EC84",
+                                  }}
+                                >
+                                  {text}
+                                </S.ListMembersText>
+                              ) : (
+                                <S.ListMembersText
+                                  style={{
+                                    marginRight: "0px",
+                                    color: "#e34848",
+                                  }}
+                                >
+                                  {text}
+                                </S.ListMembersText>
+                              )}
+                            </S.ListMembers>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                )}
               </S.attendances>
             </S.listDiv>
           </S.Section>
