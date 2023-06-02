@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Navbar from "../../components/Navbar";
 import Bottombar from "../../components/Bottombar";
 import Card from "../../components/Card";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getClubs, tokenValidate } from "../../util/api";
 import { useRecoilValue } from "recoil";
 import { IClub, manager } from "../../util/atoms";
@@ -111,7 +111,7 @@ const CardContainer = styled.div`
   }
 `;
 
-function Admin() {
+function Login() {
   const navigate = useNavigate();
   const data = useRecoilValue(manager);
   const [clubs, setClubs] = useState<IClub[]>([]);
@@ -184,16 +184,17 @@ function Admin() {
                     );
                 })}
               </CardContainer>
+              <AddButton onClick={onAddClub}>
+                관리 중인 동아리 추가하기 +
+              </AddButton>
+              {clubs.length === 0 ? (
+                <></>
+              ) : (
+                <TextWrapper style={{ position: "absolute", bottom: "20px" }}>
+                  <Text onClick={onDeleteClub}>동아리 삭제하기</Text>
+                </TextWrapper>
+              )}
             </>
-          )}
-
-          <AddButton onClick={onAddClub}>관리 중인 동아리 추가하기 +</AddButton>
-          {clubs.length === 0 ? (
-            <></>
-          ) : (
-            <TextWrapper style={{ position: "absolute", bottom: "20px" }}>
-              <Text onClick={onDeleteClub}>동아리 삭제하기</Text>
-            </TextWrapper>
           )}
         </Container>
         <Bottombar first={false} second={false} third={true} />
@@ -202,4 +203,4 @@ function Admin() {
   );
 }
 
-export default Admin;
+export default Login;
