@@ -12,6 +12,7 @@ const Background = styled.div`
   width: 100%;
   height: calc(var(--vh, 1vh) * 100);
   //background-color: ${(props) => props.theme.bgColor};
+  overflow: hidden;
 `;
 const Wrap = styled.div`
   width: 100%;
@@ -28,13 +29,14 @@ const Wrap = styled.div`
 `;
 const Container = styled.div`
   width: 100%;
-  height: 77%;
-  transform: translateY(10%);
-  //background-color: red;
+  height: 92%;
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  padding-top: 19%;
+  padding-bottom: 30px;
 `;
 const UserName = styled.span`
   font-size: 15px;
@@ -85,7 +87,7 @@ const Button = styled.div`
 const ModalBg = styled.div`
   display: none; //flex
   width: 100%;
-  height: 100%;
+  height: 90%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
   position: fixed;
@@ -230,7 +232,7 @@ function Delete() {
               </TextWrapper>
             </Modal>
           </ModalBg>
-          <div style={{ marginBottom: "10px" }}>
+          <div style={{ marginTop: "30%", marginBottom: "10px" }}>
             <UserName>{data.name}</UserName>
             <Title> 님이 관리 중인 동아리입니다.</Title>
           </div>
